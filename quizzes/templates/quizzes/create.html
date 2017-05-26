@@ -1,0 +1,44 @@
+{% extends 'base.html' %}
+{% block content%}
+
+<h1>Inserta una pregunta!!</h1><br/><br/>
+
+{% if error %}
+<div class="alert alert-danger" role="alert">  <span class="glyphicon glyphicon-remove" aria-hidden="true"></span> {{ error }} </div>  <br/><br/>
+{% endif %}
+
+{% if ok %}
+<div class="alert alert-success" role="alert"> <span class="glyphicon glyphicon-ok" aria-hidden="true"></span> {{ ok }}  </div>  <br/><br/>
+{% endif %}
+
+<form action="{% url 'quizzes:create'%}" method="post">
+        {% csrf_token %}
+
+        {% if request.GET.next %}
+        <input type="hidden" name="next" value="{{request.GET.next}}"/>
+        {% endif %}
+
+        Introduce la pregunta: <br/><br/>
+        <input type="text" name="pregunta" required="true"/> <br/><br/>
+        Introduce el tema de la pregunta: <br/><br/>
+        <input type="text" name="tema" required="true"/> <br/><br/>
+        Introduce tres respuestas posibles: <br/><br/>
+        1- <input type="text" name="respuesta1" required="true"/><br/><br/>
+        2- <input type="text" name="respuesta2" required="true"/><br/><br/>
+        3- <input type="text" name="respuesta3" required="true"/><br/><br/>
+
+        Introduce el número de la respuesta correcta:
+
+        <select name="respuesta_correcta">
+                <option value="1">Respuesta 1</option>
+                <option value="2">Respuesta 2</option>
+                <option value="3">Respuesta 3</option>
+        </select><br/><br/><br/><br/>
+
+        <input type="submit" value="Introducir pregunta" class="btn btn-primary"/><br/><br/>
+
+
+</form>
+
+
+{% endblock %}

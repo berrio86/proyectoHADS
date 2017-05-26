@@ -1,0 +1,17 @@
+{% extends 'base.html' %}
+{% block content%}
+
+<h1>Bienvenido a la aplicación de Quizzes!!</h1><br/><br/>
+
+{% if ok %}
+<div class="alert alert-success" role="alert"> <span class="glyphicon glyphicon-ok" aria-hidden="true"></span> {{ ok }} </div>  <br/><br/>
+{% endif %}
+
+<p>
+    Esta aplicación web es el proyecto final de la asignatura HADS de Ingeniería del Software impartido por EHU/UPV.
+    La aplicación está desarrollado sobre Django 1.11. Espero que sea de su agrado.<br/><br/>
+
+    ¡¡Hagan Juego!!
+</p>
+
+{% endblock %}

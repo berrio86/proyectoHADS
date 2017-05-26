@@ -1,0 +1,27 @@
+{% extends 'base.html' %}
+{% block content%}
+
+<h1>Preguntas</h1><br/><br/>
+
+<p>Observa las preguntas realizadas por todos los usuarios de la aplicación</p><br/><br/>
+
+<table class="table">
+    <tr>
+        <th>Pregunta</th>
+        <th>Tema</th>
+        <th>Autor</th>
+        <th>Fecha</th>
+    </tr>
+{% for quizz in quizzes.all %}
+    <tr>
+        <td>{{ quizz.pregunta }}</td>
+        <td>{{ quizz.tema }}</td>
+        <td>{{ quizz.autor.username }}</td>
+        <td>{{ quizz.fecha_formato}}</td>
+    </tr>
+{% endfor %}
+</table>
+
+
+
+{% endblock %}

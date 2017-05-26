@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Log in</title>
+</head>
+<body>
+
+ {% extends 'base.html' %}
+ {% block content%}
+
+    <h1>Iniciar sesión</h1><br/><br/>
+
+    {% if error %}
+    <div class="alert alert-danger" role="alert"> <span class="glyphicon glyphicon-remove" aria-hidden="true"></span> {{ error }} </div>  <br/><br/>
+    {% endif %}
+
+    <form action="{% url 'accounts:login'%}" method="post">
+        {% csrf_token %}
+
+        {% if request.GET.next %}
+        <input type="hidden" name="next" value="{{request.GET.next}}"/>
+        {% endif %}
+        Nombre de usuario: <br/>
+        <input type="text" name="username" required="true"/> <br/><br/>
+        Contraseña: <br/>
+        <input type="password" name="password" required="true"/><br/><br/>
+
+        <input type="submit" value="Iniciar Sesión" class="btn btn-primary"/><br/><br/>
+
+
+    </form>
+
+{% endblock %}
+</body>
+</html>
