@@ -14,9 +14,9 @@
         Nombre de usuario: <br/>
         <input type="text" name="username" required="true"/> <br/><br/>
         Contraseña: <br/>
-        <input type="password" name="password1" required="true"/><br/><br/>
+        <input type="password" name="password1" required="true" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}" title="Debe contener al menos un número, una letra mayúscula, una minúscula y un mínimo de 8 caracteres."/><br/><br/>
         Confirmación de la contraseña: <br/>
-        <input type="password" name="password2" required="true"/><br/><br/>
+        <input type="password" name="password2" required="true" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}" title="Debe contener al menos un número, una letra mayúscula, una minúscula y un mínimo de 8 caracteres."/><br/><br/>
         <input type="submit" value="Regístrate" class="btn btn-primary"/><br/><br/>
 
 

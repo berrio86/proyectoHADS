@@ -1,0 +1,32 @@
+{% extends 'base.html' %}
+{% block content%}
+
+<h1>¡Hagan juego!</h1><br/><br/>
+
+
+<form action="{% url 'game:results' %}" method="post">
+    {% csrf_token %}
+
+    <input type="hidden" name="tema" value="{{ tema }}"/>
+    <input type="hidden" name="nick" value="{{ nick }}"/>
+
+    {% for quizz in quizzes.all %}
+
+    <h3>{{ quizz.pregunta }}</h3>
+
+
+    <input type="radio" name="{{ quizz.pregunta }}" value="1" checked /> {{ quizz.respuesta1 }}<br/>
+    <input type="radio" name="{{ quizz.pregunta }}" value="2" /> {{ quizz.respuesta2 }}<br/>
+    <input type="radio" name="{{ quizz.pregunta }}" value="3"/> {{ quizz.respuesta3 }} <br/><br/>
+
+    <hr/>
+    {% endfor %}
+
+    <input type="submit" value="Ver resultados" class="btn btn-primary"/><br/><br/>
+</form>
+
+
+
+
+
+{% endblock %}

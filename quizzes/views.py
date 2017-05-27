@@ -8,7 +8,7 @@ from .models import Quizz
 @login_required
 def create(request):
     if request.method == 'POST':
-        if request.POST['pregunta'] and request.POST['respuesta1'] and request.POST['respuesta2'] and request.POST['respuesta3'] and request.POST['respuesta_correcta']:
+        if request.POST['pregunta'] and request.POST['tema'] and request.POST['respuesta1'] and request.POST['respuesta2'] and request.POST['respuesta3'] and request.POST['respuesta_correcta']:
             quizz = Quizz()
             quizz.pregunta = request.POST['pregunta']
             quizz.tema = request.POST['tema']
@@ -30,11 +30,10 @@ def create(request):
 def home(request):
     return render(request, 'quizzes/home.html')
 
+@login_required
 def allquizzes(request):
     quizzes = Quizz.objects
     return render(request, 'quizzes/allquizzes.html', {'quizzes':quizzes})
-
-
 
 
 

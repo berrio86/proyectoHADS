@@ -4,7 +4,7 @@ from django.contrib.auth.models import User
 
 class Quizz(models.Model):
     pregunta = models.TextField()
-    tema = models.TextField(default="Sin tema")
+    tema = models.TextField(default="SinTema")
     respuesta1 = models.TextField()
     respuesta2 = models.TextField()
     respuesta3 = models.TextField()

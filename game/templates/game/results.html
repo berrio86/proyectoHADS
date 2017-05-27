@@ -1,0 +1,45 @@
+{% extends 'base.html' %}
+{% block content%}
+
+<h1>Resultados</h1><br/><br/>
+
+
+
+
+<h2>Resultados de esta serie:</h2>
+{{ ru }}<br/>
+{{ rc }}
+<table class="table">
+        <tr>
+            <td><span class="glyphicon glyphicon-ok" aria-hidden="true"></span> Respuestas acertadas: </td>
+            <td> {{ acertadas }} </td>
+        </tr>
+        <tr>
+            <td><span class="glyphicon glyphicon-remove" aria-hidden="true"></span>  Respuestas falladas:</td>
+            <td>{{ falladas }}</td>
+        </tr>
+        <tr>
+            <td> Total: </td>
+            <td> {{ total }} </td>
+        </tr>
+</table>
+
+
+<h2>Resultados totales:</h2>
+<table class="table">
+        <tr>
+            <td><span class="glyphicon glyphicon-ok" aria-hidden="true"></span> Respuestas acertadas: </td>
+            <td> {{ player.respuestas_correctas }} </td>
+        </tr>
+        <tr>
+            <td><span class="glyphicon glyphicon-remove" aria-hidden="true"></span>  Respuestas falladas:</td>
+            <td>{{ player.respuestas_incorrectas }}</td>
+        </tr>
+        <tr>
+            <td> Total: </td>
+            <td> {{ player.preguntasTotales }} </td>
+        </tr>
+</table>
+
+
+{% endblock %}

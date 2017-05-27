@@ -32,7 +32,7 @@
                     <li><a  href="{% url 'quizzes:create' %}">Insertar pregunta</a></li>
                     <li><a  href="{% url 'quizzes:allquizzes' %}">Ver preguntas</a></li>
                 {% else %}
-                    <li><a  href="{% url 'home' %}">Responder preguntas</a></li>
+                    <li><a  href="{% url 'game:insertnick' %}">Responder preguntas</a></li>
                 {% endif %}
                 </ul>
             </div>

@@ -10,9 +10,13 @@ def signup(request):
                 User.objects.get(username=request.POST['username'])
                 return render(request, 'accounts/signup.html', {'error': 'El nombre de usuario seleccionado ya está siendo usado por otra persona'})
             except User.DoesNotExist:
-                user = User.objects.create_user(request.POST['username'], password=request.POST['password1'])
-                login(request, user)
-                return render(request, 'quizzes/home.html', {'ok': '¡Felicidades! Te has registrado con éxito'})
+                username= request.POST['username']
+                if username[0].isupper():
+                    user = User.objects.create_user(request.POST['username'], password=request.POST['password1'])
+                    login(request, user)
+                    return render(request, 'quizzes/home.html', {'ok': '¡Felicidades! Te has registrado con éxito'})
+                else:
+                    return render(request, 'accounts/signup.html', {'error': 'El nombre de usuario tiene que empezar por mayúscula.'})
         else:
             return render(request, 'accounts/signup.html', {'error':'Las contraseñas deben ser iguales'})
     else:
@@ -37,3 +41,4 @@ def logoutview(request):
     if request.method == 'POST':
         logout(request)
         return render(request, 'quizzes/home.html', {'ok': 'Has terminado la sesión de forma correcta'})
+

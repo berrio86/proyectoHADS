@@ -1,0 +1,25 @@
+{% extends 'base.html' %}
+{% block content%}
+
+<h1>Introduzca un nick</h1><br/><br/>
+
+<p> Al introducir su nick podrá guardar el total de fallos y aciertos en todas las partidas.</p><br/>
+
+{% if error %}
+    <div class="alert alert-danger" role="alert"> <span class="glyphicon glyphicon-remove" aria-hidden="true"></span> {{ error }} </div>  <br/>
+{% endif %}
+
+<form action="{% url 'game:userdata'%}" method="post">
+        {% csrf_token %}
+
+
+        Nick para guardar sus partidas: <br/><br/>
+        <input type="text" name="nick" /> <br/><br/>
+
+
+        <input type="submit" value="Introducir nick" class="btn btn-primary"/><br/><br/>
+
+
+</form>
+
+{% endblock %}

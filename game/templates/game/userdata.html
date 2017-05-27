@@ -1,0 +1,63 @@
+{% extends 'base.html' %}
+{% block content%}
+
+
+<h1> Datos de usuario </h1>
+
+{% if ok %}
+<div class="alert alert-success" role="alert"> <span class="glyphicon glyphicon-ok" aria-hidden="true"></span> {{ ok }} </div>
+{% endif %}
+
+<hr/>
+
+{% if player %}
+
+<h2>{{ player.nick }}</h2><br/>
+
+<table class="table">
+        <tr>
+            <td><span class="glyphicon glyphicon-ok" aria-hidden="true"></span> Respuestas acertadas: </td>
+            <td> {{ player.respuestas_correctas }} </td>
+        </tr>
+        <tr>
+            <td><span class="glyphicon glyphicon-remove" aria-hidden="true"></span>  Respuestas falladas:</td>
+            <td>{{ player.respuestas_incorrectas }}</td>
+        </tr>
+        <tr>
+            <td> Total: </td>
+            <td> {{ player.preguntasTotales }} </td>
+        </tr>
+</table>
+
+
+
+{% endif %}
+
+<hr/>
+
+<form action="{% url 'game:play' %}" method="post">
+        {% csrf_token %}
+
+        <input type="hidden" name='nick' value="{{ player.nick }}"/>
+        Seleccione el tema: <br/><br/>
+        <input type="radio" name="tema" value="Sociedad" checked> Sociedad<br>
+        <input type="radio" name="tema" value="SinTema"> Sin tema<br>
+        <input type="radio" name="tema" value="Todas"> Todas <br><br>
+
+
+        <input type="submit" value="Iniciar partida" class="btn btn-primary"/><br/><br/>
+
+
+</form>
+
+<hr/>
+
+
+{% if tema %}
+
+
+<h1>Enseñamos preguntas</h1>
+
+{% endif %}
+
+{% endblock %}
