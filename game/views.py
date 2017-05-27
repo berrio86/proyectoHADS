@@ -1,6 +1,7 @@
 from django.shortcuts import render, redirect
 from .models import Player
 from quizzes.models import Quizz
+from quizzes.models import Topic
 
 def insertnick(request):
     return render(request, 'game/insertnick.html')
@@ -11,7 +12,8 @@ def userdata(request):
             # intentar recuperar todos los temas diferentes de los modelos Quizz y pasarlos como set
             try:
                 player = Player.objects.get(nick=request.POST['nick'])
-                return render(request, 'game/userdata.html', {'ok': 'Tu usuario ha sido cargado de forma correcta.', 'player': player})
+                temas = Topic.objects.all()
+                return render(request, 'game/userdata.html', {'ok': 'Tu usuario ha sido cargado de forma correcta.', 'player': player, 'temas': temas})
             except Player.DoesNotExist:
                 nick= request.POST['nick']
                 player=Player()
@@ -19,7 +21,8 @@ def userdata(request):
                 player.respuestas_incorrectas = 0
                 player.respuestas_correctas = 0
                 player.save()
-                return render(request, 'game/userdata.html', {'ok': 'Se ha creado un nuevo usuario con el nick proporcionado' , 'player': player})
+                temas = Topic.objects.all()
+                return render(request, 'game/userdata.html', {'ok': 'Se ha creado un nuevo usuario con el nick proporcionado' , 'player': player,'temas': temas})
 
             return render(request, 'game/userdata.html')
         else:
@@ -34,7 +37,8 @@ def play(request):
         if tema == 'Todas':
             quizzes = Quizz.objects.all()
         else:
-            quizzes = Quizz.objects.filter(tema=tema)
+            tema_obj = Topic.objects.get(tema=request.POST['tema'])
+            quizzes = Quizz.objects.filter(tema=tema_obj)
         return render(request, 'game/play.html', {'quizzes': quizzes, 'tema': tema, 'nick': nick })
     else:
         return render(request, 'game/insertnick.html')
@@ -50,7 +54,8 @@ def results(request):
         if tema == 'Todas':
             quizzes = Quizz.objects.all()
         else:
-            quizzes = Quizz.objects.filter(tema=tema)
+            tema_obj = Topic.objects.get(tema=request.POST['tema'])
+            quizzes = Quizz.objects.filter(tema=tema_obj)
 
         total = len(quizzes)
 

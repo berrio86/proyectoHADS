@@ -40,10 +40,14 @@
 
         <input type="hidden" name='nick' value="{{ player.nick }}"/>
         Seleccione el tema: <br/><br/>
-        <input type="radio" name="tema" value="Sociedad" checked> Sociedad<br>
-        <input type="radio" name="tema" value="SinTema"> Sin tema<br>
-        <input type="radio" name="tema" value="Todas"> Todas <br><br>
 
+        {% for tema in temas.all %}
+
+        <input type="radio" name="tema" value="{{ tema.tema }}" > {{ tema.tema }}<br/>
+
+
+        {% endfor %}
+        <input type="radio" name="tema" value="Todas" checked> Todas <br/><br/>
 
         <input type="submit" value="Iniciar partida" class="btn btn-primary"/><br/><br/>
 

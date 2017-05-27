@@ -2,9 +2,15 @@ from django.db import models
 from django.contrib.auth.models import User
 
 
+class Topic(models.Model):
+    tema = models.TextField(default="SinTema")
+
+    def __str__(self):
+        return self.tema
+
 class Quizz(models.Model):
     pregunta = models.TextField()
-    tema = models.TextField(default="SinTema")
+    tema = models.ForeignKey(Topic)
     respuesta1 = models.TextField()
     respuesta2 = models.TextField()
     respuesta3 = models.TextField()
