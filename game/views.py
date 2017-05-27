@@ -57,13 +57,16 @@ def results(request):
         for quizz in quizzes:
             ru = request.POST[quizz.pregunta]
             rc = quizz.respuesta_correcta
-            if (rc == ru):
+            ru = int(ru)
+            if rc == ru:
                 acertadas = acertadas + 1
             else:
                 falladas = falladas + 1
 
+        player.respuestas_correctas = player.respuestas_correctas + acertadas
+        player.respuestas_incorrectas = player.respuestas_incorrectas + falladas
+        player.save()
 
-
-        return render(request, 'game/results.html', {'total': total, 'player': player, 'falladas': falladas, 'acertadas':acertadas, 'rc': rc, 'ru': ru})
+        return render(request, 'game/results.html', {'total': total, 'player': player, 'falladas': falladas, 'acertadas':acertadas})
     else:
         return render(request, 'game/insertnick.html')

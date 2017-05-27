@@ -3,12 +3,15 @@
 
 <h1>Resultados</h1><br/><br/>
 
+<h2>{{ player.nick }}</h2><br/>
 
 
 
-<h2>Resultados de esta serie:</h2>
-{{ ru }}<br/>
-{{ rc }}
+
+<h3>Resultados de esta serie:</h3><br/>
+
+
+
 <table class="table">
         <tr>
             <td><span class="glyphicon glyphicon-ok" aria-hidden="true"></span> Respuestas acertadas: </td>
@@ -25,21 +28,30 @@
 </table>
 
 
-<h2>Resultados totales:</h2>
+<h3>Resultados totales:</h3>
 <table class="table">
         <tr>
             <td><span class="glyphicon glyphicon-ok" aria-hidden="true"></span> Respuestas acertadas: </td>
             <td> {{ player.respuestas_correctas }} </td>
+            <td> {{ player.porcentajeCorrecto }} % </td>
         </tr>
         <tr>
             <td><span class="glyphicon glyphicon-remove" aria-hidden="true"></span>  Respuestas falladas:</td>
             <td>{{ player.respuestas_incorrectas }}</td>
+            <td>{{ player.porcentajeIncorrecto }} % </td>
         </tr>
         <tr>
             <td> Total: </td>
             <td> {{ player.preguntasTotales }} </td>
+            <td> </td>
         </tr>
 </table>
+
+<form method="post" action="{% url 'game:userdata' %}">
+    {% csrf_token %}
+    <input type="hidden" name="nick" value="{{ player.nick }}"/>
+    <input type="submit" value="Jugar otra vez" class="btn btn-primary"/><br/><br/>
+</form>
 
 
 {% endblock %}

@@ -9,3 +9,11 @@ class Player(models.Model):
 
     def preguntasTotales(self):
         return self.respuestas_correctas + self.respuestas_incorrectas
+
+    def porcentajeCorrecto(self):
+        return round((100 * self.respuestas_correctas)/self.preguntasTotales(), 2)
+
+    def porcentajeIncorrecto(self):
+        return round((100 * self.respuestas_incorrectas)/self.preguntasTotales(),2)
+
+
