@@ -59,7 +59,15 @@
     </div>
     <footer class="navbar navbar-default navbar-fixed-bottom">
         <div class="container" style="padding: 10px;">
-                 Creado por <a href="#">Iñaki Berriotxoa</a>.
+              <ul class="nav navbar-nav navbar-left">
+                  <li><a href="https://github.com/berrio86">Creado por Iñaki Berriotxoa</a></li>
+              </ul>
+        {% if user.is_authenticated %}
+            <ul class="nav navbar-nav navbar-right">
+                <li><a href="#"> Nombre de usuario: {{ user.username }} </a> </li>
+                <li><img src="/media/{{ user.avatar.picture }}" class="img-responsive" style="max-height:55px;"/></li>
+            </ul>
+        {% endif %}
         </div>
 
     </footer>

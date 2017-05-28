@@ -17,11 +17,9 @@ def signup(request):
                     user = User.objects.create_user(request.POST['username'], password=request.POST['password1'])
                     avatar = Avatar()
                     avatar.user = user
-                    try:
-                        request.FILES['picture']
+                    pic = request.FILES.get('picture', False)
+                    if pic == True:
                         avatar.picture = request.FILES['picture']
-                    except NameError:
-                        myVar = None
                     avatar.save()
                     login(request, user)
                     return render(request, 'quizzes/home.html', {'ok': '¡Felicidades! Te has registrado con éxito'})
