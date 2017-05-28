@@ -14,7 +14,7 @@ def create(request):
 
             try:
                 tema = Topic.objects.get(tema=request.POST['tema'])
-                quizz.tema = request.POST['tema']
+                quizz.tema = tema
             except Topic.DoesNotExist:
                 tema_obj = Topic()
                 tema_obj.tema = request.POST['tema']

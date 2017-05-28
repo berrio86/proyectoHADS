@@ -1,6 +1,8 @@
 
 
  {% extends 'base.html' %}
+
+
  {% block content%}
 
     <h1>Regístrate!</h1><br/><br/>
@@ -9,17 +11,26 @@
     <div class="alert alert-danger" role="alert"> <span class="glyphicon glyphicon-remove" aria-hidden="true"></span> {{ error }} </div> <br/><br/>
     {% endif %}
 
-    <form action="{% url 'accounts:signup'%}" method="post">
+    <form action="{% url 'accounts:signup'%}" method="post" enctype="multipart/form-data">
         {% csrf_token %}
+
         Nombre de usuario: <br/>
         <input type="text" name="username" required="true"/> <br/><br/>
+
         Contraseña: <br/>
         <input type="password" name="password1" required="true" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}" title="Debe contener al menos un número, una letra mayúscula, una minúscula y un mínimo de 8 caracteres."/><br/><br/>
+
         Confirmación de la contraseña: <br/>
         <input type="password" name="password2" required="true" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}" title="Debe contener al menos un número, una letra mayúscula, una minúscula y un mínimo de 8 caracteres."/><br/><br/>
+
+        Selecciona una imagen de perfil:<br/><br/>
+        <input type="file" name="picture" accept="image/gif, image/jpeg, image/png, image/jpg"> <br/><br/>
+
         <input type="submit" value="Regístrate" class="btn btn-primary"/><br/><br/>
 
 
     </form>
 
 {% endblock %}
+
+

@@ -1,6 +1,8 @@
 from django.shortcuts import render, redirect
 from django.contrib.auth.models import User
 from django.contrib.auth import authenticate, login, logout
+from accounts.models import Avatar
+from django.core.files.storage import FileSystemStorage
 
 # Create your views here.
 def signup(request):
@@ -13,6 +15,14 @@ def signup(request):
                 username= request.POST['username']
                 if username[0].isupper():
                     user = User.objects.create_user(request.POST['username'], password=request.POST['password1'])
+                    avatar = Avatar()
+                    avatar.user = user
+                    try:
+                        request.FILES['picture']
+                        avatar.picture = request.FILES['picture']
+                    except NameError:
+                        myVar = None
+                    avatar.save()
                     login(request, user)
                     return render(request, 'quizzes/home.html', {'ok': '¡Felicidades! Te has registrado con éxito'})
                 else:
@@ -41,4 +51,7 @@ def logoutview(request):
     if request.method == 'POST':
         logout(request)
         return render(request, 'quizzes/home.html', {'ok': 'Has terminado la sesión de forma correcta'})
+
+
+
 
