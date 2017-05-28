@@ -20,7 +20,8 @@ def signup(request):
                             avatar = Avatar()
                             avatar.user = user
                             pic = request.FILES.get('picture', False)
-                            if pic == True:
+                            print(pic)
+                            if pic != False:
                                 avatar.picture = request.FILES['picture']
                             avatar.save()
                             login(request, user)

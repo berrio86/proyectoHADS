@@ -45,8 +45,8 @@
                          <input type="hidden"/>
                      </form>
                      {% else %}
-                        <li><a href="{% url 'accounts:signup' %}">Resgístrate</a></li>
-                        <li><a href="{% url 'accounts:login' %}">Iniciar Sesión</a></li>
+                        <li><a href="{% url 'accounts:signup' %}"><span class="glyphicon glyphicon-user"></span> Resgístrate</a></li>
+                        <li><a href="{% url 'accounts:login' %}"><span class="glyphicon glyphicon-log-in"></span> Iniciar Sesión</a></li>
                      {% endif %}
 
                  </ul>
@@ -57,8 +57,9 @@
         {% block content %}
         {% endblock %}
     </div>
-    <footer class="navbar navbar-default navbar-fixed-bottom">
-        <div class="container" style="padding: 10px;">
+    <br/><br/><br/>
+    <footer class="navbar navbar-default navbar-fixed-bottom" >
+        <div class="container" style="">
               <ul class="nav navbar-nav navbar-left">
                   <li><a href="https://github.com/berrio86">Creado por Iñaki Berriotxoa</a></li>
               </ul>

@@ -10,7 +10,7 @@ class Topic(models.Model):
 
 class Quizz(models.Model):
     pregunta = models.TextField()
-    tema = models.ForeignKey(Topic)
+    tema = models.ForeignKey(Topic, on_delete=models.CASCADE)
     respuesta1 = models.TextField()
     respuesta2 = models.TextField()
     respuesta3 = models.TextField()
